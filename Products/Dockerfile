@@ -6,7 +6,7 @@
 
 FROM maven:3.8.7-openjdk-18-slim
 WORKDIR /productmodule
-COPY pom.xml /productmodule
+COPY ./Products/pom.xml /productmodule
 COPY ./Products/src /productmodule/src
 RUN mvn package
 
