@@ -11,4 +11,4 @@ COPY ./Products/src /productmodule/src
 RUN mvn package
 
 EXPOSE 8080
-CMD ["java", "-jar", "./Products/target/Products-1.0-SNAPSHOT-jar-with-dependencies.jar"]
+CMD ["java", "-jar", "target/Products-1.0-SNAPSHOT-jar-with-dependencies.jar"]
