@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+//............... added frontend url in line 90. https://shyamclothfrontend.onrender.com...................
+
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
@@ -85,7 +87,7 @@ public class OrderController {
     @GetMapping("track/{mobileNumber}")
     public RedirectView trackOrder(@PathVariable String mobileNumber) {
 
-        RedirectView rv= new RedirectView("http://"+request.getServerName()+"/track-order");
+        RedirectView rv= new RedirectView("https://shyamclothfrontend.onrender.com/track-order");
         String orderDetailString=orderService.findByMobileNumber(mobileNumber).toString();
        // System.out.println(orderDetailString);
 
