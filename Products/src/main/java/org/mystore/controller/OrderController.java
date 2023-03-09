@@ -10,6 +10,7 @@ import org.mystore.model.Product;
 import org.mystore.service.OrderService;
 import org.mystore.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -17,13 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-//............... added frontend url in line 90. https://shyamclothfrontend.onrender.com...................
-
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
-    @Autowired
-    private HttpServletRequest request;
+    @Value("${frontend.url}")
+    String WebInterface_URL;
 
     @Autowired
     private OrderService orderService;
@@ -79,7 +78,7 @@ public class OrderController {
         Orders savedOrdersToDB =orderService.saveOrder(orders);
        // System.err.println(savedOrdersToDB);
 
-        //return new RedirectView("http://"+request.getServerName()+"/track-order");
+        //return new RedirectView(WebInterface_URL+"/track-order");
         return trackOrder(mobileNumber);
     }
 
@@ -87,7 +86,7 @@ public class OrderController {
     @GetMapping("track/{mobileNumber}")
     public RedirectView trackOrder(@PathVariable String mobileNumber) {
 
-        RedirectView rv= new RedirectView("https://shyamclothfrontend.onrender.com/track-order");
+        RedirectView rv= new RedirectView(  WebInterface_URL+"/track-order");
         String orderDetailString=orderService.findByMobileNumber(mobileNumber).toString();
        // System.out.println(orderDetailString);
 
